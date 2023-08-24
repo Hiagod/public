@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resource Monitoring</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        .data-container {
+            margin-top: 50px;
+            font-size: 20px;
+        }
+    </style>
+    <script>
+        function update() {
+            fetch('/data')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('current_time').innerText = data.current_time;
+                    document.getElementById('factorial').innerText = data.factorial;
+                });
+        }
+        setInterval(update, 1000);
+    </script>
+</head>
+<body onload="update()">
+    <h1>Resource Monitoring</h1>
+    <div class="data-container">
+        <p>Horário atual: <span id="current_time"></span></p>
+        <p>Fatorial da hora, minuto e segundo: <span id="factorial"></span></p>
+    </div>
+</body>
+</html>
